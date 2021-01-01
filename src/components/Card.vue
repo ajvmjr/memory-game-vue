@@ -3,87 +3,34 @@
     flat
     outlined
     class="card"
-    :class="cards[index].chosen ? 'card card--selected' : 'card'"
-    :disabled="disabled || cards[index].disabled"
     height="300px"
     @click="handleClick"
+    :disabled="card.disabled"
   >
+    {{ card.value }}
   </v-card>
 </template>
 
 <script>
 export default {
   data: () => ({
-    cards: [
-      {
-        id: 1,
-        value: "1",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 2,
-        value: "1",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 3,
-        value: "2",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 4,
-        value: "2",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 5,
-        value: "3",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 6,
-        value: "3",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 7,
-        value: "4",
-        chosen: false,
-        disabled: false,
-      },
-      {
-        id: 8,
-        value: "4",
-        chosen: false,
-        disabled: false,
-      },
-    ],
+    card: {},
   }),
 
   props: {
-    index: Number,
+    info: Object,
     disabled: Boolean,
+  },
+
+  mounted() {
+    this.card = this.info;
   },
 
   methods: {
     handleClick() {
-      this.selectCards();
-    },
-
-    selectCards() {
-      if (!this.cards[this.index].chosen) {
-        this.cards[this.index].chosen = true;
-        this.cards[this.index].disabled = true;
-        this.$emit("selected", this.cards[this.index]);
-      } else {
-        this.cards[this.index].chosen = false;
-      }
+      this.card.chosen = true;
+      this.card.disabled = true;
+      this.$emit("selected", this.card);
     },
   },
 };

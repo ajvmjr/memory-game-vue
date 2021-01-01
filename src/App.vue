@@ -2,10 +2,10 @@
   <div id="app">
     <v-container>
       <v-row>
-        <v-col cols="12" lg="3" v-for="(x, index) in 8" :key="index">
+        <v-col cols="12" lg="3" v-for="c in cards" :key="c.id">
           <Card
             @selected="handleClick($event)"
-            :index="index"
+            :info="c"
             :disabled="disabled"
           />
         </v-col>
@@ -19,12 +19,66 @@ import Card from "@/components/Card";
 
 export default {
   data: () => ({
+    cards: [
+      {
+        id: 1,
+        value: "1",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 2,
+        value: "1",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 3,
+        value: "2",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 4,
+        value: "2",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 5,
+        value: "3",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 6,
+        value: "3",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 7,
+        value: "4",
+        chosen: false,
+        disabled: false,
+      },
+      {
+        id: 8,
+        value: "4",
+        chosen: false,
+        disabled: false,
+      },
+    ],
     cardsChosen: [],
     disabled: false,
   }),
 
   name: "App",
   components: { Card },
+
+  created() {
+    this.shuffle();
+  },
 
   methods: {
     handleClick(e) {
@@ -47,9 +101,19 @@ export default {
       }
     },
 
+    shuffle() {
+      for (let i = this.cards.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = this.cards[i];
+        this.cards[i] = this.cards[j];
+        this.cards[j] = temp;
+      }
+    },
+
     correct() {
       this.cardsChosen = [];
       this.disabled = false;
+      console.log("acertou");
     },
 
     reset() {
@@ -59,6 +123,7 @@ export default {
       this.cardsChosen[1].disabled = false;
       this.cardsChosen = [];
       this.disabled = false;
+      console.log("errou");
     },
   },
 };
