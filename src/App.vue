@@ -69,6 +69,7 @@ export default {
         disabled: false,
       },
     ],
+    corrects: [],
     cardsChosen: [],
     disabled: false,
   }),
@@ -92,10 +93,12 @@ export default {
         if (cardsChosen[0].value === cardsChosen[1].value) {
           setTimeout(() => {
             this.correct();
+            this.corrects.push(cardsChosen[0], cardsChosen[1]);
+            this.checkWin();
           }, 2000);
         } else {
           setTimeout(() => {
-            this.reset();
+            this.resetCurrentCards();
           }, 2000);
         }
       }
@@ -110,13 +113,17 @@ export default {
       }
     },
 
+    checkWin() {
+      if (this.corrects.length === this.cards.length) console.log("ganhou");
+    },
+
     correct() {
       this.cardsChosen = [];
       this.disabled = false;
       console.log("acertou");
     },
 
-    reset() {
+    resetCurrentCards() {
       this.cardsChosen[0].chosen = false;
       this.cardsChosen[1].chosen = false;
       this.cardsChosen[0].disabled = false;
@@ -125,6 +132,8 @@ export default {
       this.disabled = false;
       console.log("errou");
     },
+
+    resetGame() {},
   },
 };
 </script>

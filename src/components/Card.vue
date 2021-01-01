@@ -5,9 +5,9 @@
     class="card"
     height="300px"
     @click="handleClick"
-    :disabled="card.disabled"
+    :disabled="disabled || card.disabled"
   >
-    {{ card.value }}
+    <p v-if="card.chosen" class="card__value">{{ card.value }}</p>
   </v-card>
 </template>
 
@@ -38,13 +38,22 @@ export default {
 
 <style lang="scss" scoped>
 .card {
+  align-items: center;
   background-color: #ffd045;
   background-image: linear-gradient(315deg, #ffd045 0%, #d14545 74%);
   border: 2px solid #fff !important;
+  display: flex;
+  justify-content: center;
   width: 250px;
 
   &--selected {
     background: blue !important;
+  }
+
+  &__value {
+    color: white;
+    font-size: 100px;
+    font-weight: 800;
   }
 }
 </style>
