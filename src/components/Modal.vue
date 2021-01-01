@@ -44,7 +44,7 @@ export default {
       },
       {
         id: 3,
-        name: "Difícil 16",
+        name: "Difícil (16)",
       },
     ],
     difficultSelected: {},

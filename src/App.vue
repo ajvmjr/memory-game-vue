@@ -3,7 +3,15 @@
     <v-app>
       <v-container>
         <v-row>
-          <v-col cols="12" sm="4" md="4" lg="3" v-for="c in cards" :key="c.id">
+          <v-col
+            cols="12"
+            sm="6"
+            md="3"
+            lg="3"
+            v-for="c in cards"
+            :key="c.id"
+            class="d-flex justify-center"
+          >
             <Card
               @selected="handleClick($event)"
               :info="c"

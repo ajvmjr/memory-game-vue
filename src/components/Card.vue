@@ -7,7 +7,6 @@
     @click="handleClick"
     :disabled="disabled || card.disabled"
   >
-    {{ card }}
     <p v-if="card.chosen" class="card__value">{{ card.value }}</p>
   </v-card>
 </template>
