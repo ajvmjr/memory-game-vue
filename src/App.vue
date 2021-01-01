@@ -114,13 +114,14 @@ export default {
     },
 
     checkWin() {
-      if (this.corrects.length === this.cards.length) console.log("ganhou");
+      if (this.corrects.length === this.cards.length) {
+        setTimeout(this.resetGame(), 3000);
+      }
     },
 
     correct() {
       this.cardsChosen = [];
       this.disabled = false;
-      console.log("acertou");
     },
 
     resetCurrentCards() {
@@ -130,10 +131,19 @@ export default {
       this.cardsChosen[1].disabled = false;
       this.cardsChosen = [];
       this.disabled = false;
-      console.log("errou");
     },
 
-    resetGame() {},
+    resetGame() {
+      this.cardsChosen = [];
+      this.corrects = [];
+      this.disabled = false;
+
+      this.cards.map((card) => {
+        card.chosen = false;
+        card.disabled = false;
+      });
+      this.shuffle();
+    },
   },
 };
 </script>
