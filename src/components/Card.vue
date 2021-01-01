@@ -7,6 +7,7 @@
     @click="handleClick"
     :disabled="disabled || card.disabled"
   >
+    {{ card }}
     <p v-if="card.chosen" class="card__value">{{ card.value }}</p>
   </v-card>
 </template>
@@ -20,6 +21,15 @@ export default {
   props: {
     info: Object,
     disabled: Boolean,
+  },
+
+  watch: {
+    info: {
+      handler() {
+        this.card = this.info;
+      },
+      deep: true,
+    },
   },
 
   mounted() {
