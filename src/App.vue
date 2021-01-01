@@ -30,7 +30,6 @@ export default {
     handleClick(e) {
       let { cardsChosen } = this;
       if (cardsChosen.length < 2) {
-        this.disabled = false;
         cardsChosen.push(e);
       }
 
@@ -56,6 +55,8 @@ export default {
     reset() {
       this.cardsChosen[0].chosen = false;
       this.cardsChosen[1].chosen = false;
+      this.cardsChosen[0].disabled = false;
+      this.cardsChosen[1].disabled = false;
       this.cardsChosen = [];
       this.disabled = false;
     },
@@ -75,7 +76,6 @@ export default {
 
 #app {
   height: 100vh;
-  // background: #0a0e42;
-  background: rgb(148, 131, 131);
+  background: rgba(0, 0, 0, 0.9);
 }
 </style>
